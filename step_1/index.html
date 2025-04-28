@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Earliest Coding</title>
+<script>
+  var name = '';
+  function handleNameChange () { 
+   name = document.getElementById('inputText').value;
+  };
+
+  function clearInputName (){
+    document.getElementById('inputText').value = '';
+    name = '';
+  }
+
+  function displayMessage(){
+    alert(`name given in input is ${name}`);
+  }
+</script>
+</head>
+<body>
+
+  <h1>Type name in input box</h1>
+  <label for="name">Type Name</label>
+  <input type="text" id="inputText"  size="30" maxlength="50" onchange="handleNameChange()"><br>
+  <button onclick="clearInputName()">Reset</button>
+  <button onclick="displayMessage()">See the Input value in alert</button>
+</body>
+</html>

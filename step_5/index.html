@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AMD Pattern Example</title>
+<script>
+  // Configure RequireJS (or another AMD loader)
+  var require = {
+    // No specific configuration needed for this simple example
+  };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+<script>
+  require(['inputModule.js'], function(inputModule) {
+    function init() {
+      const inputElement = document.getElementById('inputText');
+      const resetButton = document.querySelector('button:nth-child(2)');
+      const displayButton = document.querySelector('button:nth-child(3)');
+
+      inputElement.onchange = inputModule.handleNameChange;
+      resetButton.onclick = inputModule.clearInputName;
+      displayButton.onclick = inputModule.displayMessage;
+    }
+
+    // Initialize when the DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  });
+</script>
+</head>
+<body>
+
+  <h1>Type name in input box</h1>
+  <label for="name">Type Name</label>
+  <input type="text" id="inputText"  size="30" maxlength="50"><br>
+  <button>Reset</button>
+  <button>See the Input value in alert</button>
+
+  <script>
+    // This global code is no longer needed as the module handles it.
+  </script>
+</body>
+</html>

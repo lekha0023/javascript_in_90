@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CommonJS Style Server Style</title>
+<script>
+  // In scenario aiming for CommonJS style in the browser,
+  // we would be using a module loader like RequireJS.
+  // For this simplified example, we'll assume the 'inputModule.js'
+  // code is somehow loaded and its exports are available.
+
+  // This is a conceptual simplification. Without a module loader,
+  // directly 'requiring' wont work in a standard 2010 browser.
+
+  // simulating the import:
+  // it had to be bundled and used this way const nameModule = require('inputModule.js')
+  const nameModule = {
+    handleNameChange: function () {
+      this.name = document.getElementById('inputText').value;
+    },
+    clearInputName: function () {
+      document.getElementById('inputText').value = '';
+      this.name = '';
+    },
+    displayMessage: function () {
+      alert(`name given in input is ${this.name}`);
+    },
+    name: '' // Simulate the 'name' variable within the module's scope
+  };
+
+  // Bind 'this' for the methods to the 'nameModule' object
+  const handleNameChange = nameModule.handleNameChange.bind(nameModule);
+  const clearInputName = nameModule.clearInputName.bind(nameModule);
+  const displayMessage = nameModule.displayMessage.bind(nameModule);
+
+</script>
+</head>
+<body>
+
+  <h1>Type name in input box</h1>
+  <label for="name">Type Name</label>
+  <input type="text" id="inputText"  size="30" maxlength="50" onchange="handleNameChange()"><br>
+  <button onclick="clearInputName()">Reset</button>
+  <button onclick="displayMessage()">See the Input value in alert</button>
+
+  <script>
+    // In a real setup with a module loader, you might have an entry point script
+    // that 'requires' the module and uses its functions.
+    // For this simplified example, the simulated module is available globally.
+  </script>
+</body>
+</html>
