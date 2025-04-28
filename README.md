@@ -43,6 +43,41 @@ In Node.js, by default, .js files are treated as CommonJS (using require/module.
 If you want to use ES6 module syntax (import/export) without confusion, you need to signal Node.js.
 One way is to rename your file to .mjs.
 .mjs clearly tells Node: "Hey, this is an ES6 module! Treat import and export as valid."
+
+step 8 loading pattern es6 dynamic loading pattern non architectural 
+Explanation of Changes for Dynamic Import:
+
+HTML (index.html):
+
+The inline onchange and onclick attributes are removed from the input and button elements.
+Instead of a direct <script type="module" src="./module.mjs"></script>, we now have an inline <script> block with an async function loadModule.
+Inside loadModule, we use the import() function (which returns a Promise) to dynamically load ./module.mjs.
+Once the module is loaded (and the Promise resolves), we access the exported init function from the module and call it.
+Error handling is included using a try...catch block to catch any potential issues during module loading.
+The buttons now have id attributes (resetButton, displayButton) to be targeted in the module.
+module.mjs:
+
+The JavaScript logic is in this separate .mjs file (as required for ES Modules).
+The init function now sets up the event listeners programmatically.
+We export { init }; to make the init function available when the module is imported.
+How it Works:
+
+When the browser parses the HTML, the inline <script> block executes.
+The loadModule function is called.
+import('./module.mjs') starts the process of asynchronously fetching and loading the module.mjs file.
+The await keyword pauses the execution of loadModule until the Promise returned by import() resolves (meaning the module is loaded).
+Once loaded, the module object contains the exports from module.mjs (in this case, the init function).
+module.init() is then called, which sets up the event listeners.
+To Run This:
+
+Save the HTML as index.html and the JavaScript as module.mjs in the same directory.
+Open index.html in a modern web browser that supports dynamic import(). Most modern browsers have good support for this feature.
+This example demonstrates how to use dynamic import() to load an ES6 module on demand. In this simple case, we're loading it immediately when the page loads, but dynamic imports are particularly useful for scenarios like code splitting or loading modules based on user interaction.
+
+
+
+
+
 more details in further reading below.
 
 further reading AMD style what is done in example:
