@@ -106,3 +106,7 @@ Usage | Inside JavaScript code | As a filename extension (file.mjs)
 Needed in | Any module-based JavaScript code | Node.js when not using "type": "module"
 Relation | Defines how code behaves | Defines how file is treated
 Example | import { foo } from './bar.js' | Save as bar.mjs if Node.js needs it
+
+
+error:
+<img width="1237" alt="Screenshot 2025-04-29 at 3 23 20 AM" src="https://github.com/user-attachments/assets/15679c2e-47ae-48db-94da-8b7180dfc82e" />
